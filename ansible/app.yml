@@ -1,0 +1,9 @@
+---
+- name: Install cadvisor, eth_node, grafana, and prometheus
+  hosts: all
+
+  roles:
+    - cadvisor
+    - eth_node
+    - grafana
+    - prometheus
