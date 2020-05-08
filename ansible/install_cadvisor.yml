@@ -1,5 +1,5 @@
 ---
-- hosts: all
-  tasks:
-  - import_role:
-      name: cadvisor
+  - hosts: localhost
+    tasks:
+      - import_role:
+          name: cadvisor

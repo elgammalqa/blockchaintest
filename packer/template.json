@@ -22,13 +22,16 @@
                 ],
                 "most_recent": true
             },
-            "instance_type": "t2.micro",
+            "spot_price": "0.256",
+            "spot_instance_types": [
+                "c4.4xlarge"
+            ],
             "ssh_username": "ubuntu",
             "ami_name": "packer-api {{timestamp}}",
             "launch_block_device_mappings": [
                 {
                     "device_name": "/dev/sda1",
-                    "volume_size": 8,
+                    "volume_size": 40,
                     "volume_type": "gp2",
                     "delete_on_termination": true
                 }
@@ -46,10 +49,14 @@
         },
         {
             "type": "ansible-local",
-            "playbook_file": "./app.yml",
-            "galaxy_file": "./requirements.yml",
+            "playbook_files": [
+                "../ansible/node.yml",
+                "../ansible/monitoring.yml",
+                "../ansible/install_cadvisor.yml"
+            ],
             "role_paths": [
                 "../ansible/roles/cadvisor",
+                "../ansible/roles/docker",
                 "../ansible/roles/eth_node",
                 "../ansible/roles/grafana",
                 "../ansible/roles/prometheus"
